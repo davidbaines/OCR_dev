@@ -1,13 +1,13 @@
 ---
 
-title: Project name here
+title: OCR testing nbdev environment
 
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Summary description here."
-description: "Summary description here."
+summary: "Third attempt at working with nbdev."
+description: "Third attempt at working with nbdev."
 nb_path: "index.ipynb"
 ---
 <!--
@@ -31,7 +31,14 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This file will become your README and also the index of your documentation.</p>
+<p>This code can: (hopefully, when it's done.)</p>
+
+<pre><code>1. Create images from text files. Use various fonts and sizes.
+2. Manipulate the images to simulate poor quality scans.
+3. Send images to Google, Amazon and Microsoft to OCR.
+4. Collect the results from each service.
+5. Calculate the error rate for each text and service.
+6. Show the differences between each OCR result and the orginal.</code></pre>
 
 </div>
 </div>
@@ -44,7 +51,7 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>pip install your_project_name</code></p>
+<p><code>pip install ocr_dev</code></p>
 
 </div>
 </div>
@@ -57,7 +64,10 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Fill me in please! Don't forget code examples:</p>
+<p>Create text files to use. Save them in a folder. Point the code to that folder. Specify where to save the images and how to make them.
+Specify adjustments to the images.
+In order to send the images to any service you'll need an account with that service. The services are: Amazon Web Services Vision. Google Cloud Platform Read. Microsoft Azure OCR. Microsoft has a limited number of languages that it supports and if the text isn't in one of those then it won't return any results.</p>
+<p>Specify which services to send the images.</p>
 
 </div>
 </div>

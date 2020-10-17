@@ -7,11 +7,6 @@ __all__ = ['say_hello', 'font_path', 'A4_pixel_size', 'base_path', 'text_path', 
            'formats', 'filenames', 'text_files', 'saved_files']
 
 # Cell
-#hide
-
-#from dcb_nbdev.GoogleOCR import *
-%load_ext autoreload
-%autoreload 2
 
 #export
 def say_hello(to):
