@@ -10,7 +10,7 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: core
+      title: OCR
       url: core.html
     output: web
     title: ocr

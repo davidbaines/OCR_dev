@@ -2,9 +2,9 @@
 
 __all__ = ['say_hello', 'font_path', 'A4_pixel_size', 'base_path', 'text_path', 'results_path', 'ms_output_path',
            'gcp_output_path', 'aws_output_path', 'text_wrap', 'get_max_line_height', 'get_line_height',
-           'get_line_width', 'get_A4_image', 'font_sizes', 'font_size', 'font_file', 'font', 'img', 'left_margin',
-           'top_margin', 'right_margin', 'bottom_margin', 'x_right_margin', 'y_bottom_margin', 'printable_width',
-           'formats', 'filenames', 'text_files', 'saved_files']
+           'get_line_width', 'get_A4_image', 'draw_multiline_text', 'save_multiline_images', 'font_sizes', 'font_size',
+           'font_file', 'font', 'img', 'left_margin', 'top_margin', 'right_margin', 'bottom_margin', 'x_right_margin',
+           'y_bottom_margin', 'printable_width', 'formats', 'filenames', 'text_files', 'saved_files']
 
 # Cell
 
@@ -118,6 +118,55 @@ def get_A4_image():
     return A4_image
 
 
+
+# Cell
+def draw_multiline_text(img, lines, font, format='.pdf',\
+                        H_MARGIN=40,V_MARGIN=40,TEXT_COLOR='black'):
+
+    # Interface to draw on the image
+    draw = ImageDraw.Draw(img)
+
+    # Get the line separation required
+    line_height = get_max_line_height(lines, font)
+    ascent, descent = font.getmetrics()
+    y = V_MARGIN + descent
+
+    for line in lines:
+        # Draw this line with a left margin
+        draw.text((H_MARGIN, y), line, font=font, fill=TEXT_COLOR)
+
+        # Move on to the height at which the next line should be drawn at
+        y += line_height
+
+    return img
+
+
+def save_multiline_images(text_files,font,formats,printable_width):
+
+    saved_files = []
+
+    #print(f'In savemultilineimages: text_files:{text_files}\nFormats: {formats}')
+
+    for text_file in text_files:
+        wrapped = []
+        with open(text_file, 'r', encoding='utf-8') as infile:
+            text = infile.read()
+            lines = text.splitlines()
+            for line in lines:
+                wrapped.extend(text_wrap(line,font,printable_width))
+
+            for format in formats:
+                img = get_A4_image()
+                img = draw_multiline_text(img,wrapped,font,format=format)
+
+                # Add Font name and size to filename
+                print(font.size, Path(font.path).stem)
+                out_file_name = text_file.stem + f'_{Path(font.path).stem}_{font.size}.{format}'
+                print(out_file_name)
+                out_file = base_path / 'Input' / out_file_name
+                img.save(out_file)
+                saved_files.append(out_file)
+    return saved_files
 
 # Cell
 # Set fonts and sizes.
