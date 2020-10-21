@@ -12,7 +12,7 @@ This code can: (hopefully, when it's done.)
 
 ## Install
 
-`pip install ocr_dev`
+`pip install ocr`
 
 ## How to use
 
